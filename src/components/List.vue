@@ -2,7 +2,7 @@
   <div class="d-block w-25">
 
       <div v-for="(film, index) in films" class="d-flex justify-content-between align-items-center bg-white text-dark rounded p-3 m-4">
-        <span class="fw-bold">{{ film }}</span>
+        <span class="fw-bold">{{ film.titre }}</span>
         <div>
           <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm(index)">
             <i class="las la-edit"></i>
@@ -29,14 +29,57 @@
 </template>
 
 <script>
+
+class Film {
+  titre;
+  annee;
+  langue;
+  realisateur;
+  genre;
+
+  constructor(titre, annee, langue, realisateur, genre) {
+    this.titre = titre;
+    this.annee = annee;
+    this.langue = langue;
+    this.realisateur = realisateur;
+    this.genre = genre;
+  }
+}
+
+class Realisateur {
+  nom;
+  prenom;
+  nationalite;
+  dateNaissance;
+
+  constructor(nom, prenom, nationalite, dateNaissance) {
+    this.nom = nom;
+    this.prenom = prenom;
+    this.nationalite = nationalite;
+    this.dateNaissance = dateNaissance;
+  }
+
+  getIdentite() {
+    return this.prenom + ' ' + this.nom;
+  }
+}
 export default {
   name: "List",
   data() {
     return {
+      realisateurs: [
+        new Realisateur("Nolan", "Christopher", "Britannique", 1970),
+        new Realisateur("Coppola", "Francis Ford", "Américain", 1939),
+        new Realisateur("Chazelle", "Damien", "Américain", 1985),
+        new Realisateur("Scott", "Ridley", "Britannique", 1937),
+        new Realisateur("Jackson", "Peter", "Néo-Zélandais", 1961)
+      ],
       films: [
-          'Ratatouille',
-          'Blanche neige et les 7 nains',
-          'Fast and furious'
+        new Film("Inception", 2010, "Anglais", "this.realisateurs[1].getIdentite()", "Science-fiction"),
+        new Film("Le Parrain", 1972, "Anglais", "this.realisateurs[1].getIdentite()", "Drame"),
+        new Film("La La Land", 2016, "Anglais", "this.realisateurs[2].getIdentite()", "Comédie musicale"),
+        new Film("Blade Runner", 1982, "Anglais", "this.realisateurs[3].getIdentite()", "Science-fiction"),
+        new Film("Le Seigneur des Anneaux : La Communauté de l'Anneau", 2001, "Anglais", "this.realisateurs[4].getIdentite()", "Fantaisie")
       ],
       openCard: false,
       openCardEdit: false,
@@ -60,11 +103,11 @@ export default {
     },
     openCardEditFilm: function(index) {
       this.openCardEdit = true;
-      this.titreFilm = this.films[index];
+      this.titreFilm = this.films[index].titre;
       this.indexFilm = index;
     },
     editFilm: function(index) {
-      this.films[index] = this.titreFilm;
+      this.films[index].titre = this.titreFilm;
       this.openCardEdit = false;
     }
   }
