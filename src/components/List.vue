@@ -1,21 +1,24 @@
 <template>
-  <div v-for="(film, index) in films" class="bg-white text-dark rounded p-3 m-4">
-    <div class="d-flex justify-content-between align-items-center">
-      <span class="fw-bold">{{ film.titre }}</span>
-      <div>
-        <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm(index)">
-          <i class="las la-edit"></i>
-        </button>
-        <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm(index)">
-          <i class="las la-trash"></i>
-        </button>
+  <div v-for="(film, index) in films" class="film d-flex m-4">
+    <div class="affiche rounded-start" style="background-image: url('https://fr.web.img2.acsta.net/medias/nmedia/18/72/34/14/19476654.jpg')"></div>
+    <div class="w-100 bg-white text-dark p-3 rounded-end">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="fw-bold">{{ film.titre }}</span>
+        <div>
+          <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm(index)">
+            <i class="las la-edit"></i>
+          </button>
+          <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm(index)">
+            <i class="las la-trash"></i>
+          </button>
+        </div>
       </div>
-    </div>
-    <div>
-      <span class="badge bg-secondary">{{ film.annee }}</span>
-      <span class="badge bg-secondary mx-1">{{ film.langue }}</span>
-      <span class="badge bg-secondary mx-1">{{ film.realisateur.prenom }} {{ film.realisateur.nom }}</span>
-      <span class="badge bg-secondary mx-1">{{ film.genre }}</span>
+      <div>
+        <span class="badge bg-secondary">{{ film.annee }}</span>
+        <span class="badge bg-secondary mx-1">{{ film.langue }}</span>
+        <span class="badge bg-secondary mx-1">{{ film.realisateur.prenom }} {{ film.realisateur.nom }}</span>
+        <span class="badge bg-secondary mx-1">{{ film.genre }}</span>
+      </div>
     </div>
   </div>
   <FormAdd @film-added="addFilm" :genres="genres" :langues="langues" :nationalites="nationalites"></FormAdd>
@@ -360,5 +363,19 @@ export default {
 </script>
 
 <style scoped>
+.film {
+  cursor: pointer;
+}
 
+.film:hover {
+  transform: scale(1.1);
+  transition: 1s;
+}
+
+.affiche {
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-position: center;
+}
 </style>
