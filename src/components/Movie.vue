@@ -1,5 +1,11 @@
 <template>
   <div class="container m-4">
+    <router-link to="/">
+      <button class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i>
+        Retour
+      </button>
+    </router-link>
     <div class="affiche rounded-top" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
     <div class="bg-white text-dark p-3 rounded-bottom">
       <h2>{{ film.titre }}</h2>

@@ -9,6 +9,7 @@
         <div class="modal-body" id="cardNewFilm" >
           <span class="fw-bold">Film</span>
           <input type="text" class="form-control mt-2 mb-3" v-model="titreFilm" placeholder="Titre du film">
+          <input type="text" class="form-control mt-2 mb-3" v-model="afficheFilm" placeholder="Affiche du film (adresse url)">
           <select class="form-control mt-2 mb-3" v-model="genreFilm">
             <option disabled value="">Genre</option>
             <option v-for="(genre) in genres" :value="genre">{{ genre }}</option>
@@ -65,6 +66,7 @@ export default {
       film: '',
 
       titreFilm: '',
+      afficheFilm: '',
       genreFilm: '',
       anneeFilm: '',
       langueFilm: '',
@@ -93,6 +95,7 @@ export default {
 
       const film = {
         titre: this.titreFilm,
+        affiche: this.afficheFilm,
         annee: this.anneeFilm,
         langue: this.langueFilm,
         realisateur: realisateur,
@@ -102,6 +105,7 @@ export default {
       this.$emit('film-added', film);
 
       this.titreFilm = '';
+      this.afficheFilm = '';
       this.anneeFilm = '';
       this.langueFilm = '';
       this.genreFilm = '';
