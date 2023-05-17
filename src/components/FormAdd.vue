@@ -90,6 +90,12 @@ export default {
       this.anneeFilm = '';
       this.langueFilm = '';
       this.genreFilm = '';
+
+      this.nomRealisateur = '';
+      this.prenomRealisateur = '';
+      this.nationaliteRealisateur = '';
+      this.naissanceRealisateur = '';
+
       this.openCard = false;
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-dark rounded p-3 m-4" id="cardEditFilm" v-show="openCardEdit">
+  <div class="bg-white text-dark rounded p-3 m-4" id="cardEditFilm" v-show="openCardEdit" v-if="film">
     <span class="fw-bold">Éditer un film</span>
     <input type="text" class="form-control mt-2 mb-3" v-model="film.titre" placeholder="Titre du film">
     <select class="form-control mt-2 mb-3" v-model="film.genre">
