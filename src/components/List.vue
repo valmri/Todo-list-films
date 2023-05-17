@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Form from "./Form.vue";
+import Form from "./FormAdd.vue";
 
 
 export default {
