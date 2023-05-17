@@ -1,9 +1,10 @@
 <template>
-  <List></List>
-  <Form></Form>
+  <div class="container">
+    <List></List>
+  </div>
+
 </template>
 
 <script setup>
-import Form from "@/components/Form.vue";
 import List from "@/components/List.vue";
 </script>
