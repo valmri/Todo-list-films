@@ -1,6 +1,6 @@
 <template>
   <div v-for="(film, index) in films" class="film d-flex m-4">
-    <div class="affiche rounded-start" style="background-image: url('https://fr.web.img2.acsta.net/medias/nmedia/18/72/34/14/19476654.jpg')"></div>
+    <div class="affiche rounded-start" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
     <div class="w-100 bg-white text-dark p-3 rounded-end">
       <div class="d-flex justify-content-between align-items-center">
         <span class="fw-bold">{{ film.titre }}</span>
@@ -282,7 +282,8 @@ export default {
             "nationalite": "Britannique",
             "dateNaissance": 1970
           },
-          "genre": "Science-fiction"
+          "genre": "Science-fiction",
+          "affiche": "https://fr.web.img2.acsta.net/medias/nmedia/18/72/34/14/19476654.jpg"
         },
         {
           "titre": "Le Parrain",
@@ -294,7 +295,8 @@ export default {
             "nationalite": "Américain",
             "dateNaissance": 1939
           },
-          "genre": "Drame"
+          "genre": "Drame",
+          "affiche": "https://fr.web.img4.acsta.net/medias/nmedia/18/35/57/73/18660716.jpg"
         },
         {
           "titre": "La La Land",
@@ -306,7 +308,8 @@ export default {
             "nationalite": "Américain",
             "dateNaissance": 1985
           },
-          "genre": "Comédie musicale"
+          "genre": "Comédie musicale",
+          "affiche": "https://i0.wp.com/www.zickma.fr/wp-content/uploads/2017/04/la-la-land-quelle-edition-acheter-12.jpg?fit=958%2C1200&ssl=1"
         },
         {
           "titre": "Blade Runner",
@@ -318,7 +321,8 @@ export default {
             "nationalite": "Britannique",
             "dateNaissance": 1937
           },
-          "genre": "Science-fiction"
+          "genre": "Science-fiction",
+          "affiche": "https://m.media-amazon.com/images/I/61dVSMH76yL._AC_SY606_.jpg"
         },
         {
           "titre": "Le Seigneur des Anneaux : La Communauté de l'Anneau",
@@ -330,7 +334,8 @@ export default {
             "nationalite": "Néo-Zélandais",
             "dateNaissance": 1961
           },
-          "genre": "Fantaisie"
+          "genre": "Fantaisie",
+          "affiche": "https://fr.web.img6.acsta.net/medias/nmedia/00/02/16/27/69218096_af.jpg"
         }
       ],
       filmSelected: null,
