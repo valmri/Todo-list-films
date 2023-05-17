@@ -1,28 +1,33 @@
 <template>
-  <div v-for="(film, index) in films" class="film d-flex m-4">
-    <div class="affiche rounded-start" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
-    <div class="w-100 bg-white text-dark p-3 rounded-end">
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="fw-bold">{{ film.titre }}</span>
-        <div>
-          <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm(index)">
-            <i class="las la-edit"></i>
-          </button>
-          <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm(index)">
-            <i class="las la-trash"></i>
-          </button>
+  <div class="container">
+    <div v-for="(film, index) in films" class="film position-relative">
+      <div class="d-flex m-4">
+        <div class="affiche rounded-start" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
+        <div class="w-100 bg-white text-dark p-3 rounded-end">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold">{{ film.titre }}</span>
+            <div class="stretched-link--disabled ">
+              <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm(index)">
+                <i class="las la-edit"></i>
+              </button>
+              <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm(index)">
+                <i class="las la-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div>
+            <span class="badge bg-secondary">{{ film.annee }}</span>
+            <span class="badge bg-secondary mx-1">{{ film.langue }}</span>
+            <span class="badge bg-secondary mx-1">{{ film.realisateur.prenom }} {{ film.realisateur.nom }}</span>
+            <span class="badge bg-secondary mx-1">{{ film.genre }}</span>
+          </div>
         </div>
       </div>
-      <div>
-        <span class="badge bg-secondary">{{ film.annee }}</span>
-        <span class="badge bg-secondary mx-1">{{ film.langue }}</span>
-        <span class="badge bg-secondary mx-1">{{ film.realisateur.prenom }} {{ film.realisateur.nom }}</span>
-        <span class="badge bg-secondary mx-1">{{ film.genre }}</span>
-      </div>
+      <router-link :to="{ path: '/movie'}" class="stretched-link"></router-link>
     </div>
+    <FormAdd @film-added="addFilm" :genres="genres" :langues="langues" :nationalites="nationalites"></FormAdd>
+    <FormEdit :genres="genres" :langues="langues" :nationalites="nationalites" :film="filmSelected" ref="cardEditFilm"></FormEdit>
   </div>
-  <FormAdd @film-added="addFilm" :genres="genres" :langues="langues" :nationalites="nationalites"></FormAdd>
-  <FormEdit :genres="genres" :langues="langues" :nationalites="nationalites" :film="filmSelected" ref="cardEditFilm"></FormEdit>
 </template>
 
 <script>
@@ -383,4 +388,10 @@ export default {
   background-size: cover;
   background-position: center;
 }
+
+.stretched-link--disabled {
+  z-index: 2;
+  position: relative;
+}
+
 </style>
