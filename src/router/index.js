@@ -8,10 +8,10 @@ const routes = [
     component: List
   },
   {
-    path: '/movie',
+    name: 'Movie',
+    path: '/movie/:id',
     component: Movie
   }
-  // Autres routes
 ];
 
 const router = createRouter({
