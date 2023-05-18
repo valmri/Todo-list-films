@@ -8,7 +8,12 @@
     </router-link>
     <div class="affiche rounded-top" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
     <div class="bg-white text-dark p-3 rounded-bottom">
-      <h2>{{ film.titre }}</h2>
+      <div class="d-flex justify-content-between">
+        <h2>{{ film.titre }}</h2>
+        <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm()">
+          <i class="las la-edit"></i>
+        </button>
+      </div>
       <div class="mb-4">
         <span class="badge bg-secondary">{{ film.annee }}</span>
         <span class="badge bg-secondary mx-1">{{ film.langue }}</span>
@@ -21,10 +26,12 @@
       <span class="fw-bold">Année de naissance : </span><span>{{ film.realisateur.dateNaissance }}</span>
     </div>
   </div>
+  <FormEdit v-show="openCardEdit" @close="closeFormEdit"></FormEdit>
 </template>
 
 <script>
 import {mapState} from "vuex";
+import FormEdit from "./FormEdit.vue";
 
 export default {
   name: "Movie",
@@ -35,6 +42,22 @@ export default {
       return this.films[id];
     }
   },
+  components: {
+    FormEdit
+  },
+  data() {
+    return {
+      openCardEdit: false
+    }
+  },
+  methods: {
+    openCardEditFilm: function () {
+      this.openCardEdit = true;
+    },
+    closeFormEdit() {
+      this.openCardEdit = false;
+    }
+  }
 }
 </script>
 
