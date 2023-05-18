@@ -6,10 +6,11 @@
           <h5 class="modal-title">Ajout d'un film</h5>
           <button type="button" class="btn-close" @click="closeCardNewFilm"></button>
         </div>
-        <div class="modal-body" id="cardNewFilm" >
+        <div class="modal-body" id="cardNewFilm">
           <span class="fw-bold">Film</span>
           <input type="text" class="form-control mt-2 mb-3" v-model="titreFilm" placeholder="Titre du film">
-          <input type="text" class="form-control mt-2 mb-3" v-model="afficheFilm" placeholder="Affiche du film (adresse url)">
+          <input type="text" class="form-control mt-2 mb-3" v-model="afficheFilm"
+                 placeholder="Affiche du film (adresse url)">
           <select class="form-control mt-2 mb-3" v-model="genreFilm">
             <option disabled value="">Genre</option>
             <option v-for="(genre) in genres" :value="genre">{{ genre }}</option>
@@ -27,7 +28,8 @@
             <option disabled value="">Nationalité</option>
             <option v-for="(nationalite) in nationalites" :value="nationalite">{{ nationalite }}</option>
           </select>
-          <input type="text" class="form-control mt-2 mb-3" v-model="naissanceRealisateur" placeholder="Année de naissance">
+          <input type="text" class="form-control mt-2 mb-3" v-model="naissanceRealisateur"
+                 placeholder="Année de naissance">
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" @click="closeCardNewFilm">Fermer</button>
@@ -42,22 +44,15 @@
 </template>
 
 <script>
+import {mapState} from "vuex";
+
 export default {
   name: "FormAdd",
-  emits: ['film-added'],
-  props: {
-    genres: {
-      type: Array,
-      default: null
-    },
-    langues: {
-      type: Array,
-      default: null
-    },
-    nationalites: {
-      type: Array,
-      default: null
-    }
+  computed: {
+    ...mapState(['genres']),
+    ...mapState(['langues']),
+    ...mapState(['nationalites']),
+    ...mapState(['films'])
   },
   data() {
     return {
@@ -78,13 +73,13 @@ export default {
     }
   },
   methods: {
-    openCardNewFilm: function() {
+    openCardNewFilm: function () {
       this.openCard = true;
     },
-    closeCardNewFilm: function() {
+    closeCardNewFilm: function () {
       this.openCard = false;
     },
-    addFilm: function() {
+    addFilm: function () {
 
       const realisateur = {
         nom: this.nomRealisateur,
@@ -102,7 +97,7 @@ export default {
         genre: this.genreFilm
       };
 
-      this.$emit('film-added', film);
+      this.films.push(film);
 
       this.titreFilm = '';
       this.afficheFilm = '';

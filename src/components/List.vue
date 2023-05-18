@@ -22,8 +22,7 @@
       </div>
       <router-link :to="{ path: '/movie/' + index }" class="stretched-link"></router-link>
     </div>
-    <FormAdd @film-added="addFilm" :genres="genres" :langues="langues" :nationalites="nationalites"></FormAdd>
-    <FormEdit :genres="genres" :langues="langues" :nationalites="nationalites" :film="filmSelected" ref="cardEditFilm"></FormEdit>
+    <FormAdd></FormAdd>
   </div>
 </template>
 
@@ -33,13 +32,6 @@ import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "List",
-  data() {
-    return {
-      filmSelected: null,
-      indexFilm: null,
-      titreFilm: ''
-    }
-  },
   components: {
     FormAdd
   },
@@ -48,9 +40,6 @@ export default {
   },
   methods: {
     ...mapMutations(['setFilms']),
-    addFilm(film) {
-      this.films.push(film);
-    },
     deleteFilm: function (index) {
       if (index !== -1) {
         this.films.splice(index, 1);
