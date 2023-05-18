@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div v-for="(film, index) in films" class="film position-relative">
-      <div class="d-flex m-4">
-        <div class="affiche rounded-start" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
-        <div class="w-100 bg-white text-dark p-3 rounded-end">
+      <div class="d-flex rounded bg-white m-4 p-3">
+        <div class="affiche rounded" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
+        <div class="w-100 text-dark ps-3">
           <div class="d-flex justify-content-between align-items-center">
             <span class="fw-bold">{{ film.titre }}</span>
             <div class="stretched-link--disabled ">
