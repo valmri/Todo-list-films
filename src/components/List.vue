@@ -6,11 +6,6 @@
         <div class="w-100 text-dark ps-3">
           <div class="d-flex justify-content-between align-items-center">
             <span class="fw-bold">{{ film.titre }}</span>
-            <div class="stretched-link--disabled ">
-              <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm(index)">
-                <i class="las la-trash"></i>
-              </button>
-            </div>
           </div>
           <div>
             <span class="badge bg-secondary">{{ film.annee }}</span>
@@ -28,7 +23,7 @@
 
 <script>
 import FormAdd from "./FormAdd.vue";
-import {mapMutations, mapState} from "vuex";
+import {mapState} from "vuex";
 
 export default {
   name: "List",
@@ -39,11 +34,7 @@ export default {
     ...mapState(['films'])
   },
   methods: {
-    deleteFilm: function (index) {
-      if (index !== -1) {
-        this.films.splice(index, 1);
-      }
-    }
+
   }
 }
 </script>

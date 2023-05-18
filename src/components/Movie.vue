@@ -1,7 +1,7 @@
 <template>
   <div class="container m-4">
     <router-link to="/">
-      <button class="btn btn-secondary">
+      <button class="btn btn-secondary mb-4">
         <i class="fa-solid fa-arrow-left"></i>
         Retour
       </button>
@@ -10,9 +10,14 @@
     <div class="bg-white text-dark p-3 rounded-bottom">
       <div class="d-flex justify-content-between">
         <h2>{{ film.titre }}</h2>
-        <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
-          <i class="las la-edit"></i>
-        </button>
+        <div>
+          <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
+            <i class="las la-edit"></i>
+          </button>
+          <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm()">
+            <i class="las la-trash"></i>
+          </button>
+        </div>
       </div>
       <div class="mb-4">
         <span class="badge bg-secondary">{{ film.annee }}</span>
@@ -56,6 +61,11 @@ export default {
     },
     closeFormEdit: function() {
       this.isOpenCardEdit = false;
+    },
+    deleteFilm: function () {
+      const id = this.$route.params.id;
+      this.films.splice(id, 1);
+      this.$router.push('/');
     }
   }
 }
