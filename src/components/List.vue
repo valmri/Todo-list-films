@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div v-for="(film, index) in films" class="film position-relative">
+    <Search @search="updateListFilms"></Search>
+    <div v-for="(film, index) in listFilms" class="film position-relative">
       <div class="d-flex rounded bg-white m-4 p-3">
         <div class="affiche rounded" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
         <div class="w-100 text-dark ps-3">
@@ -23,19 +24,38 @@
 
 <script>
 import FormAdd from "./FormAdd.vue";
-import {mapState} from "vuex";
+import Search from "./Search.vue";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   name: "List",
   components: {
+    Search,
     FormAdd
   },
   computed: {
-    ...mapState(['films'])
+    ...mapGetters(['films']),
+  },
+  data() {
+    return {
+      listFilms: []
+    }
+  },
+  created() {
+    this.listFilms = this.films;
+
+    this.$store.watch(
+      () => this.films,
+      (newFilm) => {
+        this.listFilms = newFilm;
+      }
+    );
   },
   methods: {
-
-  }
+    updateListFilms(films) {
+      this.listFilms = films;
+    },
+  },
 }
 </script>
 

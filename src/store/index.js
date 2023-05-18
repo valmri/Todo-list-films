@@ -314,6 +314,9 @@ const store = createStore({
     setFilms(state, films) {
       state.films = films;
     }
+  },
+  getters: {
+    films: state => state.films
   }
 });
 

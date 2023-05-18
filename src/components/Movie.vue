@@ -12,10 +12,10 @@
         <h2>{{ film.titre }}</h2>
         <div>
           <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
-            <i class="las la-edit"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
           </button>
           <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm()">
-            <i class="las la-trash"></i>
+            <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       </div>
