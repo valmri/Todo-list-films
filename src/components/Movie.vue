@@ -40,10 +40,39 @@ export default {
 
 <style scoped>
 .affiche {
-  height: 500px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: gray;
+  height: 150%;
+  position: relative;
 }
+
+.affiche::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: inherit;
+  background-position: center;
+  background-size: cover;
+  filter: brightness(100%) blur(5px);
+}
+
+.affiche::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  background-image: inherit;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.59);
+}
+
 </style>
