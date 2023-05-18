@@ -4,6 +4,7 @@ import List from "../components/List.vue";
 
 const routes = [
   {
+    name: 'Home',
     path: '/',
     component: List
   },

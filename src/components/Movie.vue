@@ -10,7 +10,7 @@
     <div class="bg-white text-dark p-3 rounded-bottom">
       <div class="d-flex justify-content-between">
         <h2>{{ film.titre }}</h2>
-        <button class="btn btn-primary mx-2" title="Éditer le film" @click="openCardEditFilm()">
+        <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
           <i class="las la-edit"></i>
         </button>
       </div>
@@ -26,7 +26,7 @@
       <span class="fw-bold">Année de naissance : </span><span>{{ film.realisateur.dateNaissance }}</span>
     </div>
   </div>
-  <FormEdit v-show="openCardEdit" @close="closeFormEdit"></FormEdit>
+  <FormEdit v-show="isOpenCardEdit" @close="closeFormEdit"></FormEdit>
 </template>
 
 <script>
@@ -47,15 +47,15 @@ export default {
   },
   data() {
     return {
-      openCardEdit: false
+      isOpenCardEdit: false
     }
   },
   methods: {
-    openCardEditFilm: function () {
-      this.openCardEdit = true;
+    openFormEdit: function() {
+      this.isOpenCardEdit = true;
     },
-    closeFormEdit() {
-      this.openCardEdit = false;
+    closeFormEdit: function() {
+      this.isOpenCardEdit = false;
     }
   }
 }
@@ -97,5 +97,4 @@ export default {
   background-position: center;
   background-color: rgba(255, 255, 255, 0.59);
 }
-
 </style>

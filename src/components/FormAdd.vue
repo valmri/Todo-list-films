@@ -1,10 +1,10 @@
 <template>
-  <div class="modal" tabindex="-1" v-show="openCard">
+  <div class="modal" tabindex="-1" v-show="isOpenFormAdd">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Ajout d'un film</h5>
-          <button type="button" class="btn-close" @click="closeCardNewFilm"></button>
+          <button type="button" class="btn-close" @click="closeFormAdd"></button>
         </div>
         <div class="modal-body" id="cardNewFilm">
           <span class="fw-bold">Film</span>
@@ -32,14 +32,14 @@
                  placeholder="Année de naissance">
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" @click="closeCardNewFilm">Fermer</button>
+          <button class="btn btn-secondary" @click="closeFormAdd">Fermer</button>
           <button class="btn btn-success" @click="addFilm">Enregistrer</button>
         </div>
       </div>
     </div>
   </div>
   <div class="text-center p-3 m-4">
-    <button class="btn btn-success w-25" @click="openCardNewFilm" v-show="!openCard">Ajouter un film</button>
+    <button class="btn btn-success w-25" @click="openFormAdd" v-show="!isOpenFormAdd">Ajouter un film</button>
   </div>
 </template>
 
@@ -56,9 +56,7 @@ export default {
   },
   data() {
     return {
-      openCard: false,
-
-      film: '',
+      isOpenFormAdd: false,
 
       titreFilm: '',
       afficheFilm: '',
@@ -73,11 +71,11 @@ export default {
     }
   },
   methods: {
-    openCardNewFilm: function () {
-      this.openCard = true;
+    openFormAdd: function () {
+      this.isOpenFormAdd = true;
     },
-    closeCardNewFilm: function () {
-      this.openCard = false;
+    closeFormAdd: function () {
+      this.isOpenFormAdd = false;
     },
     addFilm: function () {
 
@@ -110,7 +108,7 @@ export default {
       this.nationaliteRealisateur = '';
       this.naissanceRealisateur = '';
 
-      this.openCard = false;
+      this.isOpenFormAdd = false;
     }
   }
 }

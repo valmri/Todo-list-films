@@ -39,7 +39,6 @@ export default {
     ...mapState(['films'])
   },
   methods: {
-    ...mapMutations(['setFilms']),
     deleteFilm: function (index) {
       if (index !== -1) {
         this.films.splice(index, 1);
@@ -47,7 +46,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -71,5 +69,4 @@ export default {
   z-index: 2;
   position: relative;
 }
-
 </style>

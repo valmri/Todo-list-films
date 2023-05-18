@@ -24,7 +24,7 @@ const store = createStore({
           "realisateur": {
             "nom": "Coppola",
             "prenom": "Francis Ford",
-            "nationalite": "Américain",
+            "nationalite": "Américaine",
             "dateNaissance": 1939
           },
           "genre": "Drame",
@@ -37,7 +37,7 @@ const store = createStore({
           "realisateur": {
             "nom": "Chazelle",
             "prenom": "Damien",
-            "nationalite": "Américain",
+            "nationalite": "Américaine",
             "dateNaissance": 1985
           },
           "genre": "Comédie musicale",
@@ -63,7 +63,7 @@ const store = createStore({
           "realisateur": {
             "nom": "Jackson",
             "prenom": "Peter",
-            "nationalite": "Néo-Zélandais",
+            "nationalite": "Néo-Zélandaise",
             "dateNaissance": 1961
           },
           "genre": "Fantaisie",

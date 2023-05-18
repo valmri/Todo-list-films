@@ -1,9 +1,9 @@
 <template>
-  <div class="modal" tabindex="-1" v-show="openCardEdit">
+  <div class="modal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Édition d'un film</h5>
+          <h5 class="modal-title">Édition du film</h5>
           <button type="button" class="btn-close" @click="closeFormEdit"></button>
         </div>
         <div class="modal-body" id="cardNewFilm" >
@@ -52,11 +52,6 @@ export default {
     film() {
       const id = this.$route.params.id;
       return this.films[id];
-    }
-  },
-  data() {
-    return {
-      openCardEdit: false
     }
   },
   methods: {
