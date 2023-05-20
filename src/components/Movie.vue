@@ -9,7 +9,11 @@
     <div class="affiche rounded-top" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
     <div class="bg-white text-dark p-3 rounded-bottom">
       <div class="d-flex justify-content-between">
-        <h2>{{ film.titre }}</h2>
+        <h2 class="flex-grow-1">{{ film.titre }}</h2>
+        <div class="d-inline-flex align-items-center">
+          <input type="number" min="0" max="5" id="note" v-model="film.note" class="form-control">
+          <span class="ms-2">/ 5</span>
+        </div>
         <div>
           <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
             <i class="fa-solid fa-pen-to-square"></i>
@@ -106,5 +110,9 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-color: rgba(255, 255, 255, 0.59);
+}
+
+#note {
+  width: 60px;
 }
 </style>

@@ -15,7 +15,8 @@ const store = createStore({
             "dateNaissance": 1970
           },
           "genre": "Science-fiction",
-          "affiche": "https://fr.web.img2.acsta.net/medias/nmedia/18/72/34/14/19476654.jpg"
+          "affiche": "https://fr.web.img2.acsta.net/medias/nmedia/18/72/34/14/19476654.jpg",
+          "note": 0
         },
         {
           "titre": "Le Parrain",
@@ -28,7 +29,8 @@ const store = createStore({
             "dateNaissance": 1939
           },
           "genre": "Drame",
-          "affiche": "https://fr.web.img4.acsta.net/medias/nmedia/18/35/57/73/18660716.jpg"
+          "affiche": "https://fr.web.img4.acsta.net/medias/nmedia/18/35/57/73/18660716.jpg",
+          "note": 0
         },
         {
           "titre": "La La Land",
@@ -41,7 +43,8 @@ const store = createStore({
             "dateNaissance": 1985
           },
           "genre": "Comédie musicale",
-          "affiche": "https://i0.wp.com/www.zickma.fr/wp-content/uploads/2017/04/la-la-land-quelle-edition-acheter-12.jpg?fit=958%2C1200&ssl=1"
+          "affiche": "https://i0.wp.com/www.zickma.fr/wp-content/uploads/2017/04/la-la-land-quelle-edition-acheter-12.jpg?fit=958%2C1200&ssl=1",
+          "note": 0
         },
         {
           "titre": "Blade Runner",
@@ -54,7 +57,8 @@ const store = createStore({
             "dateNaissance": 1937
           },
           "genre": "Science-fiction",
-          "affiche": "https://m.media-amazon.com/images/I/61dVSMH76yL._AC_SY606_.jpg"
+          "affiche": "https://m.media-amazon.com/images/I/61dVSMH76yL._AC_SY606_.jpg",
+          "note": 0
         },
         {
           "titre": "Le Seigneur des Anneaux : La Communauté de l'Anneau",
@@ -67,7 +71,8 @@ const store = createStore({
             "dateNaissance": 1961
           },
           "genre": "Fantaisie",
-          "affiche": "https://fr.web.img6.acsta.net/medias/nmedia/00/02/16/27/69218096_af.jpg"
+          "affiche": "https://fr.web.img6.acsta.net/medias/nmedia/00/02/16/27/69218096_af.jpg",
+          "note": 0
         }
       ],
       genres: [
