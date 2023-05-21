@@ -7,33 +7,35 @@
           <button type="button" class="btn-close" @click="closeFormAdd"></button>
         </div>
         <div class="modal-body" id="cardNewFilm">
-          <span class="fw-bold">Film</span>
-          <input type="text" class="form-control mt-2 mb-3" v-model="titreFilm" placeholder="Titre du film">
-          <input type="text" class="form-control mt-2 mb-3" v-model="afficheFilm"
-                 placeholder="Affiche du film (adresse url)">
-          <select class="form-control mt-2 mb-3" v-model="genreFilm">
-            <option disabled value="">Genre</option>
-            <option v-for="(genre) in genres" :value="genre">{{ genre }}</option>
-          </select>
-          <input type="text" class="form-control mt-2 mb-3" v-model="anneeFilm" placeholder="Année">
-          <select class="form-control mt-2 mb-3" v-model="langueFilm">
-            <option disabled value="">Langue</option>
-            <option v-for="(langue) in langues" :value="langue">{{ langue }}</option>
-          </select>
-          <hr/>
-          <span class="fw-bold">Réalisateur</span>
-          <input type="text" class="form-control mt-2 mb-3" v-model="nomRealisateur" placeholder="Nom">
-          <input type="text" class="form-control mt-2 mb-3" v-model="prenomRealisateur" placeholder="Prénom">
-          <select class="form-control mt-2 mb-3" v-model="nationaliteRealisateur">
-            <option disabled value="">Nationalité</option>
-            <option v-for="(nationalite) in nationalites" :value="nationalite">{{ nationalite }}</option>
-          </select>
-          <input type="text" class="form-control mt-2 mb-3" v-model="naissanceRealisateur"
-                 placeholder="Année de naissance">
+          <form>
+            <span class="fw-bold">Film</span>
+            <input type="text" class="form-control mt-2 mb-3" v-model="titreFilm" placeholder="Titre du film">
+            <input type="text" class="form-control mt-2 mb-3" v-model="afficheFilm"
+                   placeholder="Affiche du film (adresse url)">
+            <select class="form-control mt-2 mb-3" v-model="genreFilm">
+              <option disabled value="">Genre</option>
+              <option v-for="(genre) in genres" :value="genre">{{ genre }}</option>
+            </select>
+            <input type="text" class="form-control mt-2 mb-3" v-model="anneeFilm" placeholder="Année">
+            <select class="form-control mt-2 mb-3" v-model="langueFilm">
+              <option disabled value="">Langue</option>
+              <option v-for="(langue) in langues" :value="langue">{{ langue }}</option>
+            </select>
+            <hr/>
+            <span class="fw-bold">Réalisateur</span>
+            <input type="text" class="form-control mt-2 mb-3" v-model="nomRealisateur" placeholder="Nom">
+            <input type="text" class="form-control mt-2 mb-3" v-model="prenomRealisateur" placeholder="Prénom">
+            <select class="form-control mt-2 mb-3" v-model="nationaliteRealisateur">
+              <option disabled value="">Nationalité</option>
+              <option v-for="(nationalite) in nationalites" :value="nationalite">{{ nationalite }}</option>
+            </select>
+            <input type="text" class="form-control mt-2 mb-3" v-model="naissanceRealisateur"
+                   placeholder="Année de naissance">
+          </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" @click="closeFormAdd">Fermer</button>
-          <button class="btn btn-success" @click="addFilm">Enregistrer</button>
+          <button class="btn btn-success" @click="addNewFilm">Enregistrer</button>
         </div>
       </div>
     </div>
@@ -44,14 +46,14 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: "FormAdd",
   computed: {
-    ...mapState(['genres']),
-    ...mapState(['langues']),
-    ...mapState(['nationalites']),
+    ...mapGetters(['genres']),
+    ...mapGetters(['langues']),
+    ...mapGetters(['nationalites']),
     ...mapState(['films'])
   },
   data() {
@@ -71,13 +73,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['addFilm']),
     openFormAdd: function () {
       this.isOpenFormAdd = true;
     },
     closeFormAdd: function () {
       this.isOpenFormAdd = false;
     },
-    addFilm: function () {
+    addNewFilm: function () {
 
       const realisateur = {
         nom: this.nomRealisateur,
@@ -87,15 +90,17 @@ export default {
       }
 
       const film = {
+        id: null,
         titre: this.titreFilm,
         affiche: this.afficheFilm,
         annee: this.anneeFilm,
         langue: this.langueFilm,
         realisateur: realisateur,
-        genre: this.genreFilm
+        genre: this.genreFilm,
+        note: 0
       };
 
-      this.films.push(film);
+      this.addFilm(film);
 
       this.titreFilm = '';
       this.afficheFilm = '';

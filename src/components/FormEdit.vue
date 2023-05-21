@@ -33,18 +33,16 @@
             Annuler
           </button>
         </router-link>
-        <router-link :to="{name: 'Movie', params: {filmId: id}}">
-          <button class="btn btn-success">
-            Enregistrer
-          </button>
-        </router-link>
+        <button class="btn btn-success" @click="editFilm()">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapState} from "vuex";
+import {mapGetters, mapMutations, mapState} from "vuex";
 
 export default {
   name: "FormEdit",
@@ -54,12 +52,19 @@ export default {
     ...mapState(['nationalites']),
     ...mapGetters(['films']),
     film() {
-      return this.films[this.id];
+      return {...this.films[this.id]};
     }
   },
   data() {
     return {
       id: this.$route.params.filmId,
+    }
+  },
+  methods: {
+    ...mapMutations(['updateFilm']),
+    editFilm: function() {
+      this.updateFilm(this.film);
+      this.$router.push({name: 'Movie', params:{filmId: this.film.id}})
     }
   }
 }

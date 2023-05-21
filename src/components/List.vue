@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Search @search="updateListFilms"></Search>
-    <div v-for="(film, index) in listFilms" class="film position-relative">
+    <div v-for="(film) in listFilms" class="film position-relative">
       <div class="d-flex rounded bg-white m-4 p-3">
         <div class="affiche rounded" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
         <div class="w-100 text-dark ps-3">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <router-link :to="{ path: '/movie/' + index }" class="stretched-link"></router-link>
+      <router-link :to="{ path: '/movie/' + film.id }" class="stretched-link"></router-link>
     </div>
     <FormAdd></FormAdd>
   </div>

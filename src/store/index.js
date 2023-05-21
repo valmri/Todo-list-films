@@ -1,10 +1,11 @@
-import { createStore } from 'vuex';
+import {createStore} from 'vuex';
 
 const store = createStore({
   state() {
     return {
       films: [
         {
+          "id": 0,
           "titre": "Inception",
           "annee": 2010,
           "langue": "Anglais",
@@ -19,6 +20,7 @@ const store = createStore({
           "note": 0
         },
         {
+          "id": 1,
           "titre": "Le Parrain",
           "annee": 1972,
           "langue": "Anglais",
@@ -33,6 +35,7 @@ const store = createStore({
           "note": 0
         },
         {
+          "id": 2,
           "titre": "La La Land",
           "annee": 2016,
           "langue": "Anglais",
@@ -47,6 +50,7 @@ const store = createStore({
           "note": 0
         },
         {
+          "id": 3,
           "titre": "Blade Runner",
           "annee": 1982,
           "langue": "Anglais",
@@ -61,6 +65,7 @@ const store = createStore({
           "note": 0
         },
         {
+          "id": 4,
           "titre": "Le Seigneur des Anneaux : La Communauté de l'Anneau",
           "annee": 2001,
           "langue": "Anglais",
@@ -316,12 +321,22 @@ const store = createStore({
     };
   },
   mutations: {
-    setFilms(state, films) {
-      state.films = films;
+    addFilm(state, film) {
+      film.id = state.films.length > 0 ? state.films[state.films.length - 1].id + 1 : 0;
+      state.films.push(film);
+    },
+    updateFilm(state, updatedFilm) {
+      const index = state.films.findIndex(film => film.id === updatedFilm.id);
+      if (index !== -1) {
+        state.films.splice(index, 1, updatedFilm);
+      }
     }
   },
   getters: {
-    films: state => state.films
+    films: state => state.films,
+    genres: state => state.genres,
+    langues: state => state.langues,
+    nationalites: state => state.nationalites
   }
 });
 
