@@ -1,11 +1,27 @@
 <template>
   <div class="container m-4">
-    <router-link to="/">
-      <button class="btn btn-secondary mb-4">
-        <i class="fa-solid fa-arrow-left"></i>
-        Retour
-      </button>
-    </router-link>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <router-link :to="{name: 'Home'}">
+        <button class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i>
+          Retour
+        </button>
+      </router-link>
+
+      <div>
+        <router-link :to="{name: 'Edit', params: {filmId: id}}">
+          <button class="btn btn-primary mx-2">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Éditer le film
+          </button>
+        </router-link>
+
+        <button class="btn btn-danger" @click="deleteFilm()">
+          <i class="fa-solid fa-trash"></i>
+          Supprimer le film
+        </button>
+      </div>
+    </div>
     <div class="affiche rounded-top" v-bind:style="{ 'background-image': 'url(' + film.affiche + ')' }"></div>
     <div class="bg-white text-dark p-3 rounded-bottom">
       <div class="d-flex justify-content-between">
@@ -13,14 +29,6 @@
         <div class="d-inline-flex align-items-center">
           <input type="number" min="0" max="5" id="note" v-model="film.note" class="form-control">
           <span class="ms-2">/ 5</span>
-        </div>
-        <div>
-          <button class="btn btn-primary mx-2" title="Éditer le film" @click="openFormEdit()">
-            <i class="fa-solid fa-pen-to-square"></i>
-          </button>
-          <button class="btn btn-danger" title="Supprimer le film" @click="deleteFilm()">
-            <i class="fa-solid fa-trash"></i>
-          </button>
         </div>
       </div>
       <div class="mb-4">
@@ -35,39 +43,27 @@
       <span class="fw-bold">Année de naissance : </span><span>{{ film.realisateur.dateNaissance }}</span>
     </div>
   </div>
-  <FormEdit v-show="isOpenCardEdit" @close="closeFormEdit"></FormEdit>
 </template>
 
 <script>
 import {mapState} from "vuex";
-import FormEdit from "./FormEdit.vue";
 
 export default {
   name: "Movie",
   computed: {
     ...mapState(['films']),
     film() {
-      const id = this.$route.params.id;
-      return this.films[id];
+      return this.films[this.id];
     }
-  },
-  components: {
-    FormEdit
   },
   data() {
     return {
-      isOpenCardEdit: false
+      id: this.$route.params.filmId,
     }
   },
   methods: {
-    openFormEdit: function() {
-      this.isOpenCardEdit = true;
-    },
-    closeFormEdit: function() {
-      this.isOpenCardEdit = false;
-    },
     deleteFilm: function () {
-      const id = this.$route.params.id;
+      const id = this.$route.params.filmId;
       this.films.splice(id, 1);
       this.$router.push('/');
     }
