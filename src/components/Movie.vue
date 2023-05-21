@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     removeFilm: function () {
-      this.deleteFilm(this.id);
+      this.$store.commit('deleteFilm', this.id);
       this.$router.push({name: 'Home'});
     }
   }

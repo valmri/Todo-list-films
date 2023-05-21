@@ -332,12 +332,11 @@ const store = createStore({
       }
     },
     deleteFilm(state, id) {
-      const index = state.films.findIndex(film => film.id === id);
+      const index = state.films.findIndex(film => film.id == id);
       if (index !== -1) {
         state.films.splice(index, 1);
       }
     }
-
   },
   getters: {
     films: state => state.films,
