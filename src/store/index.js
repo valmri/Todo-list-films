@@ -330,13 +330,23 @@ const store = createStore({
       if (index !== -1) {
         state.films.splice(index, 1, updatedFilm);
       }
+    },
+    deleteFilm(state, id) {
+      const index = state.films.findIndex(film => film.id === id);
+      if (index !== -1) {
+        state.films.splice(index, 1);
+      }
     }
+
   },
   getters: {
     films: state => state.films,
     genres: state => state.genres,
     langues: state => state.langues,
-    nationalites: state => state.nationalites
+    nationalites: state => state.nationalites,
+    getFilmById: (state) => (id) => {
+      return state.films.find(film => film.id == id);
+    }
   }
 });
 

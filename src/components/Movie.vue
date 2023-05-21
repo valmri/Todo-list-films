@@ -16,7 +16,7 @@
           </button>
         </router-link>
 
-        <button class="btn btn-danger" @click="deleteFilm()">
+        <button class="btn btn-danger" @click="removeFilm()">
           <i class="fa-solid fa-trash"></i>
           Supprimer le film
         </button>
@@ -46,14 +46,15 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "Movie",
   computed: {
-    ...mapState(['films']),
+    ...mapGetters(['getFilmById']),
+    ...mapMutations(['deleteFilm']),
     film() {
-      return this.films[this.id];
+      return this.getFilmById(this.id);
     }
   },
   data() {
@@ -62,10 +63,9 @@ export default {
     }
   },
   methods: {
-    deleteFilm: function () {
-      const id = this.$route.params.filmId;
-      this.films.splice(id, 1);
-      this.$router.push('/');
+    removeFilm: function () {
+      this.deleteFilm(this.id);
+      this.$router.push({name: 'Home'});
     }
   }
 }
