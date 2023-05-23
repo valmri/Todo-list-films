@@ -16,7 +16,7 @@
           </button>
         </router-link>
 
-        <button class="btn btn-danger" @click="removeFilm()">
+        <button class="btn btn-danger" @click="openConfirmRemove">
           <i class="fa-solid fa-trash"></i>
           Supprimer le film
         </button>
@@ -43,6 +43,26 @@
       <span class="fw-bold">Année de naissance : </span><span>{{ film.realisateur.dateNaissance }}</span>
     </div>
   </div>
+
+  <div class="modal" tabindex="-1" v-show="isConfirmRemoveOpen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Suppression du film</h5>
+          <button type="button" class="btn-close" @click="cancelRemove"></button>
+        </div>
+        <div class="modal-body">
+          <p>Voulez-vous vraiment supprimer ce film ?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" @click="cancelRemove">Non</button>
+          <button class="btn btn-success" @click="confirmRemove">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </template>
 
 <script>
@@ -59,6 +79,7 @@ export default {
   data() {
     return {
       id: this.$route.params.filmId,
+      isConfirmRemoveOpen: false,
     }
   },
   methods: {
@@ -66,7 +87,16 @@ export default {
     removeFilm: function () {
       this.deleteFilm(this.id);
       this.$router.push({name: 'Home'});
-    }
+    },
+    openConfirmRemove: function() {
+      this.isConfirmRemoveOpen = true;
+    },
+    confirmRemove() {
+      this.removeFilm();
+    },
+    cancelRemove() {
+      this.isConfirmRemoveOpen = false;
+    },
   }
 }
 </script>
@@ -110,5 +140,10 @@ export default {
 
 #note {
   width: 60px;
+}
+
+.modal {
+  display: block;
+  background: rgba(0, 0, 0, 0.44);
 }
 </style>
