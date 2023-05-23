@@ -11,7 +11,7 @@
           <option disabled value="">Genre</option>
           <option v-for="(genre) in getGenres" :value="genre">{{ genre }}</option>
         </select>
-        <input type="text" class="form-control mt-2 mb-3" v-model="film.annee" placeholder="Année">
+        <input type="number" class="form-control mt-2 mb-3" v-model="film.annee" min="1000" placeholder="Année">
         <select class="form-control mt-2 mb-3" v-model="film.langue">
           <option disabled value="">Langue</option>
           <option v-for="(langue) in getLangues" :value="langue">{{ langue }}</option>
@@ -24,8 +24,7 @@
           <option disabled value="">Nationalité</option>
           <option v-for="(nationalite) in getNationalites" :value="nationalite">{{ nationalite }}</option>
         </select>
-        <input type="text" class="form-control mt-2 mb-3" v-model="film.realisateur.dateNaissance"
-               placeholder="Année de naissance">
+        <input type="number" class="form-control mt-2 mb-3" min="1000" v-model="film.realisateur.dateNaissance" placeholder="Année de naissance">
       </div>
       <div class="text-end">
         <router-link :to="{name: 'Movie', params: {filmId: id}}">
