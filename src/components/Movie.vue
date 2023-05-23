@@ -96,7 +96,7 @@ export default {
     },
     cancelRemove() {
       this.isConfirmRemoveOpen = false;
-    },
+    }
   }
 }
 </script>
