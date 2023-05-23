@@ -1,5 +1,4 @@
 <template>
-  <!-- New version -->
   <div class="container m-4">
     <div class="bg-white text-dark p-3 rounded-bottom">
       <div>
