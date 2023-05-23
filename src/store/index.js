@@ -339,10 +339,10 @@ const store = createStore({
     }
   },
   getters: {
-    films: state => state.films,
-    genres: state => state.genres,
-    langues: state => state.langues,
-    nationalites: state => state.nationalites,
+    getFilms: state => state.films,
+    getGenres: state => state.genres,
+    getLangues: state => state.langues,
+    getNationalites: state => state.nationalites,
     getFilmById: (state) => (id) => {
       return state.films.find(film => film.id == id);
     }

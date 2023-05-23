@@ -52,7 +52,6 @@ export default {
   name: "Movie",
   computed: {
     ...mapGetters(['getFilmById']),
-    ...mapMutations(['deleteFilm']),
     film() {
       return this.getFilmById(this.id);
     }
@@ -63,8 +62,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['deleteFilm']),
     removeFilm: function () {
-      this.$store.commit('deleteFilm', this.id);
+      this.deleteFilm(this.id);
       this.$router.push({name: 'Home'});
     }
   }

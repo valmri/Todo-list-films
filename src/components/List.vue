@@ -25,7 +25,7 @@
 <script>
 import FormAdd from "./FormAdd.vue";
 import Search from "./Search.vue";
-import {mapGetters, mapState} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
   name: "List",
@@ -34,7 +34,7 @@ export default {
     FormAdd
   },
   computed: {
-    ...mapGetters(['films']),
+    ...mapGetters(['getFilms']),
   },
   data() {
     return {
@@ -42,19 +42,19 @@ export default {
     }
   },
   created() {
-    this.listFilms = this.films;
+    this.listFilms = this.getFilms;
 
     this.$store.watch(
-      () => this.films,
+      () => this.getFilms,
       (newFilm) => {
         this.listFilms = newFilm;
       }
     );
   },
   methods: {
-    updateListFilms(films) {
-      this.listFilms = films;
-    },
+    updateListFilms(listFilmsUpdate) {
+      this.listFilms = listFilmsUpdate;
+    }
   },
 }
 </script>
@@ -74,10 +74,5 @@ export default {
   width: 150px;
   background-size: cover;
   background-position: center;
-}
-
-.stretched-link--disabled {
-  z-index: 2;
-  position: relative;
 }
 </style>

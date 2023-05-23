@@ -6,7 +6,7 @@
           <h5 class="modal-title">Ajout d'un film</h5>
           <button type="button" class="btn-close" @click="closeFormAdd"></button>
         </div>
-        <div class="modal-body" id="cardNewFilm">
+        <div class="modal-body">
           <form>
             <span class="fw-bold">Film</span>
             <input type="text" class="form-control mt-2 mb-3" v-model="titreFilm" placeholder="Titre du film">
@@ -14,12 +14,12 @@
                    placeholder="Affiche du film (adresse url)">
             <select class="form-control mt-2 mb-3" v-model="genreFilm">
               <option disabled value="">Genre</option>
-              <option v-for="(genre) in genres" :value="genre">{{ genre }}</option>
+              <option v-for="(genre) in getGenres" :value="genre">{{ genre }}</option>
             </select>
-            <input type="text" class="form-control mt-2 mb-3" v-model="anneeFilm" placeholder="Année">
+            <input type="number" class="form-control mt-2 mb-3" v-model="anneeFilm" placeholder="Année">
             <select class="form-control mt-2 mb-3" v-model="langueFilm">
               <option disabled value="">Langue</option>
-              <option v-for="(langue) in langues" :value="langue">{{ langue }}</option>
+              <option v-for="(langue) in getLangues" :value="langue">{{ langue }}</option>
             </select>
             <hr/>
             <span class="fw-bold">Réalisateur</span>
@@ -27,9 +27,9 @@
             <input type="text" class="form-control mt-2 mb-3" v-model="prenomRealisateur" placeholder="Prénom">
             <select class="form-control mt-2 mb-3" v-model="nationaliteRealisateur">
               <option disabled value="">Nationalité</option>
-              <option v-for="(nationalite) in nationalites" :value="nationalite">{{ nationalite }}</option>
+              <option v-for="(nationalite) in getNationalites" :value="nationalite">{{ nationalite }}</option>
             </select>
-            <input type="text" class="form-control mt-2 mb-3" v-model="naissanceRealisateur"
+            <input type="number" class="form-control mt-2 mb-3" v-model="naissanceRealisateur"
                    placeholder="Année de naissance">
           </form>
         </div>
@@ -46,15 +46,15 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "FormAdd",
   computed: {
-    ...mapGetters(['genres']),
-    ...mapGetters(['langues']),
-    ...mapGetters(['nationalites']),
-    ...mapState(['films'])
+    ...mapGetters(['getGenres']),
+    ...mapGetters(['getLangues']),
+    ...mapGetters(['getNationalites']),
+    ...mapGetters(['getFilms'])
   },
   data() {
     return {
